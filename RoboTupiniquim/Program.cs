@@ -1,154 +1,40 @@
-﻿static class Robo
-{
-    public static int posicaoX;
-    public static int posicaoY;
-    public static int direcao;
-
-    public static void VirarEsquerda()
-    {
-        if (direcao == 'N')
-                {
-                    direcao = 'O';
-                }
-                else if (direcao == 'O')
-                {
-                    direcao = 'S';
-                }
-                else if (direcao == 'S')
-                {
-                    direcao = 'L';
-                }
-                else if (direcao == 'L')
-                {
-                    direcao = 'N';
-                }
-                else if (direcao == 'M')
-                {
-                    if (direcao == 'N')
-                    {
-                        posicaoY++;
-                    }
-                    else if (direcao == 'S')
-                    {
-                        posicaoY--;
-                    }
-                    else if (direcao == 'O')
-                    {
-                        posicaoX--;
-                    }
-                    else if (direcao == 'L')
-                    {
-                        posicaoX++;
-                    }
-                }
-    }
-
-    public static void VirarDireita()
-    {
-        if (direcao == 'N')
-                {
-                    direcao = 'L';
-                }
-                else if (direcao == 'L')
-                {
-                    direcao = 'S';
-                }
-                else if (direcao == 'S')
-                {
-                    direcao = 'O';
-                }
-                else if (direcao == 'O')
-                {
-                    direcao = 'N';
-                }
-                else if (direcao == 'M')
-                {
-                    if (direcao == 'N')
-                    {
-                        posicaoY++;
-                    }
-                    else if (direcao == 'S')
-                    {
-                        posicaoY--;
-                    }
-                    else if (direcao == 'O')
-                    {
-                        posicaoX--;
-                    }
-                    else if (direcao == 'L')
-                    {
-                        posicaoX++;
-                    }
-                }
-    }
-
-    public static void Mover ()
-    {
-        if (direcao == 'N')
-        {
-            posicaoY++;
-        }
-        else if (direcao == 'S')
-        {
-            posicaoY--;
-        }
-        else if (direcao == 'O')
-        {
-            posicaoX--;
-        }
-        else if (direcao == 'L')
-        {
-            posicaoX++;
-        }
-    }
-
-    public static void Explorar(char [] instrucoes)
-    {
-        for (int i = 0; i < instrucoes.Length; i++)
-        {
-            char instrucaoAtual = instrucoes[i];
-
-            if (instrucaoAtual == 'E')
-            {
-                Robo.VirarEsquerda();
-            }
-            else if (instrucaoAtual == 'D')
-            {
-               Robo.VirarDireita();
-            }
-            else if (instrucaoAtual == 'M')
-            {
-                Robo.Mover();
-            }
-        }
-    }
-
-    public static void ExibirCoordenadas()
-    {
-         Console.WriteLine($"Posição final do robô: {posicaoX} {posicaoY} {direcao}");
-    }
-
-}
-
-
-internal class Program
+﻿internal class Program
 {
     private static void Main(string[] args)
     {
-        string posicaoInicial = "5 5 ";
-        string comando = "MMDMMDMDDM";
+        Robo robson = new Robo();
+        
+        string posicaoInicial = "1 2 N";
+        string comando = "EMEMEMEMM";
 
         string[] coordenadasIniciais = posicaoInicial.Split(' ');
 
-        Robo.posicaoX = Convert.ToInt32(coordenadasIniciais[0]);
-        Robo.posicaoY = Convert.ToInt32(coordenadasIniciais[1]); 
-        Robo.direcao = Convert.ToChar(coordenadasIniciais[2]); 
+        robson.posicaoX = Convert.ToInt32(coordenadasIniciais[0]);
+        robson.posicaoY = Convert.ToInt32(coordenadasIniciais[1]);
+        robson.direcao = Convert.ToChar(coordenadasIniciais[2]);
 
         char[] instrucoes = comando.ToCharArray();
 
-        Robo.Explorar(instrucoes);
+        robson.Explorar(instrucoes);
 
-        Robo.ExibirCoordenadas();
+        robson.ExibirCoordenadas();
+
+        Robo bender = new Robo();
+
+        string posicaoInicialDois = "3 3 L";
+        string comandoDois = "MMDMMDMDDM";
+
+        string[] coordenadasIniciaisDois = posicaoInicialDois.Split(' ');
+
+        bender.posicaoX = Convert.ToInt32(coordenadasIniciaisDois[0]);
+        bender.posicaoY = Convert.ToInt32(coordenadasIniciaisDois[1]);
+        bender.direcao = Convert.ToChar(coordenadasIniciaisDois[2]);
+
+        char[] instrucoesDois = comandoDois.ToCharArray();
+
+        bender.Explorar(instrucoesDois);
+
+        bender.ExibirCoordenadas();
 
     }
 
